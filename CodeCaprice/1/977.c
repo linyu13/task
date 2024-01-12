@@ -1,29 +1,22 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// 比较函数，用于指定数组元素的比较规则
-int compare(const void *a, const void *b) {
-    // 返回值为负数表示a在b之前，为正数表示a在b之后，为零表示a和b相等
-    return (*(int *)a - *(int *)b);
-}
-
-int compare(const void *a, const void *b) {
-    // 返回值为负数表示a在b之前，为正数表示a在b之后，为零表示a和b相等
-    return (*(int *)a - *(int *)b);
-}
 int *sortedSquares(int *nums, int numsSize, int *returnSize) {
-    int k = numsSize - 1;
-    for (int i = 0, j = numsSize - 1; i <= j;) { 
-        // 注意这⾥要i <= j，因为最后要处理两个元素
-        if (nums[i] * nums[i] < nums[j] * nums[j]) {
-            returnSize[k--] = nums[j] * nums[j];
-            j--;
+    *returnSize = numsSize;
+    int right = numsSize - 1;
+    int left = 0;
+    int *ans = (int *)malloc(sizeof(int) * numsSize);
+    int i;
+    for (i = numsSize - 1; i >= 0; i--) {
+        if (nums[left] * nums[left] > nums[right] * nums[right]) {
+            ans[i] = nums[left] * nums[left];
+            left++;
         } else {
-            returnSize[k--] = nums[i] * nums[i];
-            i++;
+            ans[i] = nums[right] * nums[right];
+            right--;
         }
     }
-    return returnSize;
+    return ans;
 }
 int main() {
     int array[] = {-4, -1, 0, 3, 10};
