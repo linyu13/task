@@ -101,7 +101,7 @@ int main() {
         }
         pre_l1->next = new;
     }
-    
+
     for (int i = 0; i < 3; i++) {
         struct ListNode *new = malloc(sizeof(struct ListNode));
         scanf("%d", &new->val);
